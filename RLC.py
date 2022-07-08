@@ -3,7 +3,7 @@ import scipy as sp
 import scipy.signal
 from matplotlib import pyplot as plt
 from pylab import *
-h=1e-4;t_simul=1e-1;R=2.2e2;L=100e-3;C=100e-6;
+h=1e-4;t_simul=1e-3;R=4.7e2;L=100e-6;C=100e-9;
 ##h=1e-9;t_simul=1e-3;R=2.2e3;L=10e-6;C=100e-9;
 ##
 A=np.array([[-R/L, -1/L],[1/C,0]])
