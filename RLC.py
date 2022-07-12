@@ -3,9 +3,8 @@ import scipy as sp
 import scipy.signal
 from matplotlib import pyplot as plt
 from pylab import *
-h=1e-9;t_simul=1e-3;R=10e3;L=10e-6;C=100e-9;
-##h=1e-9;t_simul=1e-3;R=2.2e3;L=10e-6;C=100e-9;
-##
+##h=1e-9;t_simul=1e-3;R=10e3;L=10e-6;C=100e-9;
+h=1e-9;t_simul=1e-5;R=5.1e3;L=3.3e-6;C=0.1e-9;
 A=np.array([[-R/L, -1/L],[1/C,0]])
 B=np.array([[1/L],[0]])
 x1=np.linspace(0,0,int(t_simul/h))
