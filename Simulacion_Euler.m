@@ -1,8 +1,8 @@
 %%writefile Controlador.m
 warning('off','all');
 clc;clear all;
-m=.1;Fricc=0.1; long=0.6;g=9.8;M=.5;
-h=0.0001;tiempo=(10/h);p_pp=0;tita_pp=0; t=0:h:tiempo*h;
+m=.1;Fricc=0.1; long=10;g=9.8;M=.5;
+h=0.0001;tiempo=(50/h);p_pp=0;tita_pp=0; t=0:h:tiempo*h;
 omega(1)=0;p_p=0:h:tiempo*h; u=linspace(0,0,tiempo+1);
 %Condiciones iniciales
 alfa(1)=pi-0.8; color='b';
