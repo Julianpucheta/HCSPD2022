@@ -1,0 +1,48 @@
+# "C:/Users/LIMAC/Usr_Julian/HDMIO/Enebro/Usr_Julian/FCEFyN UNC/Extension/2022 01" 
+#https://towardsdatascience.com/how-to-use-r-in-google-colab-b6e02d736497
+# Create a new notebook: https://colab.research.google.com/#create=true.
+#https://www.datacamp.com/community/tutorials/tutorial-on-loops-in-r 
+#https://www.datacamp.com/community/tutorials/functions-in-r-a-tutorial 
+$ cd "C:/Users/LIMAC/Usr_Julian/HDMIO/Enebro/Usr_Julian/FCEFyN UNC/Extension/2022 01" 
+$ R 
+rm(list=ls(all=TRUE)) #es BORRAR todo 
+#X=[0; 0]; 
+X <- numeric(2) 
+dim(X) <- c(2,1) 
+ii=0;t_etapa=1e-9 
+tF=.5e-5; 
+Ts=t_etapa; 
+T=100e-7; At=5e-10; Kmax=fix(T/At); 
+R=2.2e3;L=10e-6;C=100e-9;vin=12; 
+TL=1.15e-4;u=12; 
+#% x1(1)=X(1);%corriente 
+x1 <- numeric(tF/t_etapa) 
+dim(x1) <- c(tF/t_etapa,1) 
+x2 <- numeric(tF/t_etapa) 
+dim(x2) <- c(tF/t_etapa,1) 
+acc <- numeric(tF/t_etapa) 
+dim(acc) <- c(tF/t_etapa,1) 
+# A=[-R/L -1/L ; 1/C 0]; 
+A<-c(-R/L,-1/L, 1/C, 0) 
+dim(A) <- c(2,2)#print(A) 
+A<-t(A) #traspongo para mantener igualdad con Matlab 
+B<-c(1/L, 0) 
+dim(B) <- c(2,1) 
+for(i in 0:(tF/At)) 
+{ 
+ii=ii+1 
+x1[ii]<-X[1] #;%corriente 
+x2[ii]<-X[2] #;%tensión en el capacitor 
+xp=A%*% X+B%*% u; 
+X=X+xp*At; 
+acc[ii]<-u; 
+} 
+t1<-seq(0,tF,At) #seq(from, to, by= ) 
+#para imprimir la imágen, sino es muy grande el archivo 
+#Acá hay que volver a asignar el directorio donde se almacena la imagen 
+##png(file="C:/Users/LIMAC/Usr_Julian/HDMIO/Enebro/Usr_Julian/FCEFyN UNC/Extension/2022 01/Imag_R_Tabla.png", width=1920, height=1080) 
+par(mfrow=c(2,1)) 
+plot(t1,x1, main="Corriente [A]", col = "red", lwd = 1,xlab="Tiempo [s]", ylab="X_1") 
+plot(t1,x2, main="Tensión [V]", col = "red", lwd = 1,xlab="Tiempo [s]", ylab="X_2") 
+#print(t1) 
+#print(x1) dev.off() #Acá termina de imprimir 
