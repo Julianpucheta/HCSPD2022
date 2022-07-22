@@ -1,0 +1,15 @@
+from sympy import * 
+import numpy as np 
+from sympy.functions.special.delta_functions import Heaviside 
+init_printing(use_unicode=True) 
+t=symbols('t') 
+ii=Function('ii') 
+v=Function('v') 
+ODE2=Eq(Derivative(v(t),t),ii(t)) 
+ODE1=Eq(Derivative(ii(t),t),-ii(t)-v(t)+Heaviside(0)) 
+eq=(ODE1,ODE2) 
+res=dsolve(eq,hint='all',ics={ii(0):0,v(0):0}) 
+#Resultado en res[0] la corriente, y en res[1] la tensión 
+ten=simplify(res[1]) 
+pretty_print(res[0])
+pretty_print(ten)
